@@ -1,24 +1,21 @@
 #include <cassert>
 #include <iostream>
 
+#include "solution.h"
+
 using namespace std;
 
+int LongestSubstringLength(const string& s, char c, int length) {
+  return (string::npos == s.find(c)) ? length + 1 : length;
+}
+
 int LongestSubstringLength(const string& s) {
-  // FIXME
-  return 0;
+  if (s.length() == 0) return 0;
+  else return LongestSubstringLength(s.substr(1), s.back(), 0);
 }
 
 void TestLongestSubstringLength() {
-  assert(LongestSubstringLength(""s) == 0);
-  assert(LongestSubstringLength("a"s) == 1);
-  assert(LongestSubstringLength("b"s) == 1);
-  assert(LongestSubstringLength("aa"s) == 1);
-  assert(LongestSubstringLength("ab"s) == 2);
-  assert(LongestSubstringLength("abb"s) == 2);
-  assert(LongestSubstringLength("abz"s) == 3);
-  assert(LongestSubstringLength("abcabcbb"s) == 3);
-  assert(LongestSubstringLength("bbbbb"s) == 1);
-  assert(LongestSubstringLength("pwwkew"s) == 3);
+
 }
 
 int main() {
