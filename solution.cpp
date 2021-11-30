@@ -13,15 +13,15 @@ int Solution::lengthOfLongestSubstring(const string &s) {
   if (s.length() < 2) { return s.length(); }
 
   int count = 0;
-  auto rem = s;
+  string_view rem{s};
   do {
     count = std::max(count, lengthOfLongestSubstringFromBegin(rem));
-    rem = rem.substr(1);
+    rem.remove_prefix(1);
   } while (!rem.empty());
   return count;
 }
 
-int Solution::lengthOfLongestSubstringFromBegin(const string &s) {
+int Solution::lengthOfLongestSubstringFromBegin(string_view s) {
   unordered_set<char> chars;
   for (const auto &c: s) {
     if (chars.count(c)) { break; }

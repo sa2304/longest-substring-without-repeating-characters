@@ -5,14 +5,14 @@
 #ifndef LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS__SOLUTION_H_
 #define LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS__SOLUTION_H_
 
-#include <string>
+#include <string_view>
 
 class Solution {
  public:
   int lengthOfLongestSubstring(const std::string& s);
 
  private:
-  int lengthOfLongestSubstringFromBegin(const std::string& s);
+  int lengthOfLongestSubstringFromBegin(std::string_view s);
 };
 
 #endif //LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS__SOLUTION_H_
