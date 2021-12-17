@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <unordered_set>
+#include <unordered_map>
 
 #include "solution.h"
 
@@ -12,20 +12,18 @@ using namespace std;
 int Solution::lengthOfLongestSubstring(const string &s) {
   if (s.length() < 2) { return s.length(); }
 
-  int count = 0;
-  string_view rem{s};
-  do {
-    count = std::max(count, lengthOfLongestSubstringFromBegin(rem));
-    rem.remove_prefix(1);
-  } while (!rem.empty());
-  return count;
-}
-
-int Solution::lengthOfLongestSubstringFromBegin(string_view s) {
-  unordered_set<char> chars;
-  for (const auto &c: s) {
-    if (chars.count(c)) { break; }
-    chars.insert(c);
+  int max_length = 1;
+  string_view ptr{s};
+  unordered_map<char, int> occurrences;
+  int first = 0;
+  for (int last = 0; last < ptr.length(); ++last) {
+    char c = ptr[last];
+    ++occurrences[c];
+    while (1 < occurrences[c]) {
+      --occurrences[ptr[first++]];
+    }
+    max_length = std::max(max_length, last - first + 1);
   }
-  return chars.size();
+
+  return max_length;
 }
